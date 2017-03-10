@@ -14,12 +14,17 @@ class User(BaseModel):
 # create table
 User.create_table(True)
 
-#MODEL TRANSAC
+#MODEL Token
 class Token(BaseModel):
     token = CharField()
     user_id = CharField()
-
 Token.create_table(True)
+#MODEL Transaction
+class Trans(BaseModel):
+    user_emeteur = CharField()
+    user_recepteur = CharField()
+    amount = CharField()
+Trans.create_table(True)
 # connect db
 db.connect()
 

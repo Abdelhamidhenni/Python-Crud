@@ -12,18 +12,18 @@ def posts():
 @app_user.route('/user', methods=['POST'])
 def new_user():
 	params = request.get_json() #dict
-	charlie = User.create(email=params['email'], password=md5(params['password']).hexdigest())
-	charlie.save()
-	return jsonify({'data': model_to_dict(charlie) }), 201
+	user = User.create(email=params['email'], password=md5(params['password']).hexdigest())
+	user.save()
+	return jsonify({'data': model_to_dict(user) }), 201
 
 @app_user.route('/user/<id>', methods=['PUT'])
 def update_user(id):
 	params = request.get_json() #dict
-	charlie = User.get(id=id)
-	charlie.email = params['email']
-	charlie.password = params['password']
-	charlie.save()#recree luser sil n'existe pas
-	return jsonify({'data': model_to_dict(charlie) }), 201
+	user = User.get(id=id)
+	user.email = params['email']
+	user.password = params['password']
+	user.save()#recree luser sil n'existe pas
+	return jsonify({'data': model_to_dict(user) }), 201
 
 @app_user.route('/user/<id>', methods=['DELETE'])
 def delete_user(id):
